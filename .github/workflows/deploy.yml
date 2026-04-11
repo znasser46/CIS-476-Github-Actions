@@ -15,7 +15,7 @@ jobs:
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.USER }}
-          key: ${{ secrets.SSH_Key }}
+          key: ${{ secrets.SSH_KEY }}
           script:
             cd ~/CIS-476-Github-Actions
             git pull

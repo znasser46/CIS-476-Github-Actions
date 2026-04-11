@@ -21,7 +21,7 @@ jobs:
             git pull
 
             docker stop app || true
-            docker rm demo-app || true
+            docker rm app || true
 
             docker build -t app .
             docker run -d -p 80:80 --name app app

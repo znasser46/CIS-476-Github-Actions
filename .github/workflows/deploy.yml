@@ -11,12 +11,12 @@ jobs:
 
     steps:
       - name: SSH and deploy
-        uses: appleboy/ssh-action
+        uses: appleboy/ssh-action@v1.0.0
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.USER }}
           key: ${{ secrets.SSH_KEY }}
-          script:
+          script: |
             cd ~/CIS-476-Github-Actions
             git pull
 

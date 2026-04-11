@@ -1,0 +1,27 @@
+name: deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: SSH and deploy
+        uses: actions/checkout@v6
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.USER }}
+          key: ${{ secrets.SSH_Key }}
+          script:
+            cd ~/CIS-476-Github-Actions
+            git pull
+
+            docker stop app || true
+            docker rm demo-app || true
+
+            docker build -t demo-app .
+            docker run -d -p 80:80 --name app app
